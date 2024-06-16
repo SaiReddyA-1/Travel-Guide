@@ -1,6 +1,8 @@
-The goal of this coding exam is to quickly get you off the ground with **Making API call with Fetch**
+##Travel Guide
 
-### Refer to the image below:
+#### Making API call with Fetch
+
+#### Refer to the image below:
 
 <br/>
 <div style="text-align: center;">
@@ -13,11 +15,11 @@ The goal of this coding exam is to quickly get you off the ground with **Making 
 <details>
 <summary>Click to view</summary>
 
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px)](https://assets.ccbp.in/frontend/content/react-js/travel-guide-lg-output.png)
+- [Medium (Size >= 768px), Large (Size >= 992px), and Extra Large (Size >= 1200px)](https://assets.ccbp.in/frontend/content/react-js/travel-guide-lg-output.png)
 
 </details>
 
-### Set Up Instructions
+### Setup Instructions
 
 <details>
 <summary>Click to view</summary>
@@ -29,15 +31,13 @@ The goal of this coding exam is to quickly get you off the ground with **Making 
 ### Completion Instructions
 
 <details>
-<summary>Functionality to be added</summary>
+<summary>Functionality Implemented</summary>
 <br/>
-The app must have the following functionalities
+The Travel Guide now includes the following functionalities:
 
-When the app is opened initially,
-
-- An HTTP GET request should be made to **travelGuidePackagesApiUrl**
-- **<i>loader</i>** should be displayed while fetching the data
-- If the HTTP GET request made is successful, the list of packages should be displayed
+- Initiates an HTTP GET request to **travelGuidePackagesApiUrl** upon initial launch
+- Displays a **<i>loader</i>** while fetching the data
+- Successfully displays the list of packages upon a successful HTTP GET request
 
 </details>
 
@@ -53,7 +53,7 @@ When the app is opened initially,
 
 **Description**:
 
-Returns a response containing the list of packages
+Returns a response containing a list of packages
 
 **Response**
 
@@ -84,8 +84,8 @@ Returns a response containing the list of packages
 
 **The following instructions are required for the tests to pass**
 
-- The image in each package item should have the alt as the value of the key `name` from each package object in the packages list
-- Wrap the Loader component with an HTML container element and add the `data-testid` attribute value as `loader` to it as shown below
+- Each package item's image should have an `alt` attribute set to the `name` value from its respective package object within the packages list
+- Wrap the Loader component with an HTML container element and set the `data-testid` attribute to `loader`, as shown below
 
 ```jsx
 <div data-testid="loader">
@@ -113,7 +113,7 @@ Returns a response containing the list of packages
 </details>
 
 <details>
-<summary>Font-families</summary>
+<summary>Font Families</summary>
 
 - Roboto
 
@@ -122,4 +122,4 @@ Returns a response containing the list of packages
 > ### _Things to Keep in Mind_
 >
 > - All components you implement should go in the `src/components` directory.
-> - Don't change the component folder names as those are the files being imported into the tests.
+> - Do not alter the names of component folders, as these are referenced in the tests.
