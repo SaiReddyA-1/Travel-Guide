@@ -18,30 +18,37 @@ class TravelGuide extends Component {
   state = {
     countryList: [],
     showContent: false,
+    error: null, // Add error state for handling fetch errors
   }
+
   componentDidMount() {
     this.getCountryList()
   }
 
   getCountryList = async () => {
-    const response = await fetch('https://apis.ccbp.in/tg/packages')
-    const data = await response.json()
-    const listFetch = data.packages
-    const newList = listFetch.map(each => {
-      return {
+    try {
+      const response = await fetch('https://apis.ccbp.in/tg/packages')
+      if (!response.ok) {
+        throw new Error('Failed to fetch data')
+      }
+      const data = await response.json()
+      const newList = data.packages.map(each => ({
         id: each.id,
         description: each.description,
         imageUrl: each.image_url,
         name: each.name,
-      }
-    })
-    this.setState({
-      countryList: newList,
-      showContent: true,
-    })
-    console.log(newList)
+      }))
+      this.setState({
+        countryList: newList,
+        showContent: true,
+        error: null, // Reset error state on successful fetch
+      })
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      this.setState({error: 'Failed to fetch data'})
+    }
   }
-
+  // eslint-disable-next-line class-methods-use-this
   renderSpinner() {
     return (
       <div data-testid="loader">
@@ -51,18 +58,19 @@ class TravelGuide extends Component {
   }
 
   render() {
-    const {showContent, countryList} = this.state
+    const {showContent, countryList, error} = this.state
     return (
       <div className="containerDiv">
         <h1 className="mainHeading">Travel Guide</h1>
-        {!showContent && (
+        {error && <div className="errorContainer">{error}</div>}
+        {!showContent && !error && (
           <div className="spinnerContainer">{this.renderSpinner()}</div>
         )}
         {showContent && (
           <ul className="contentContainer">
-            {countryList.map(each => {
-              return <RenderCard key={each.id} each={each} />
-            })}
+            {countryList.map(each => (
+              <RenderCard key={each.id} each={each} />
+            ))}
           </ul>
         )}
       </div>
